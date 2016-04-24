@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoDownloader", "VideoDownloader\VideoDownloader.csproj", "{FED72EAB-F329-45FD-ABF8-D8AFA5E98925}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "VideoDownloaderFSharp", "VideoDownloaderFSharp\VideoDownloaderFSharp.fsproj", "{D13DFF80-D7F3-46A5-907B-A65440BBACE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalsDownloader", "RentalsDownloader\RentalsDownloader.csproj", "{E804EDCC-3173-410F-8257-D3EB3E122E4E}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RentalsDownloader.Service", "RentalsDownloader.Service\RentalsDownloader.Service.fsproj", "{169E0AD4-55FB-4F5B-8BF8-86F7B6AD6511}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common\Common.csproj", "{F681FADA-2210-499F-935E-463EE6A0D624}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRobotFramework", "..\Common\WebRobotFramework\WebRobotFramework.csproj", "{67EDFF38-449D-4D16-9407-F6138CCB527E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Windows", "..\Common\Common.Windows\Common.Windows.csproj", "{57FCDEA2-8D88-46E4-B18C-C70F2A85DFE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FED72EAB-F329-45FD-ABF8-D8AFA5E98925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED72EAB-F329-45FD-ABF8-D8AFA5E98925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED72EAB-F329-45FD-ABF8-D8AFA5E98925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED72EAB-F329-45FD-ABF8-D8AFA5E98925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D13DFF80-D7F3-46A5-907B-A65440BBACE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D13DFF80-D7F3-46A5-907B-A65440BBACE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D13DFF80-D7F3-46A5-907B-A65440BBACE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D13DFF80-D7F3-46A5-907B-A65440BBACE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E804EDCC-3173-410F-8257-D3EB3E122E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E804EDCC-3173-410F-8257-D3EB3E122E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E804EDCC-3173-410F-8257-D3EB3E122E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E804EDCC-3173-410F-8257-D3EB3E122E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169E0AD4-55FB-4F5B-8BF8-86F7B6AD6511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169E0AD4-55FB-4F5B-8BF8-86F7B6AD6511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169E0AD4-55FB-4F5B-8BF8-86F7B6AD6511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169E0AD4-55FB-4F5B-8BF8-86F7B6AD6511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F681FADA-2210-499F-935E-463EE6A0D624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F681FADA-2210-499F-935E-463EE6A0D624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F681FADA-2210-499F-935E-463EE6A0D624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F681FADA-2210-499F-935E-463EE6A0D624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67EDFF38-449D-4D16-9407-F6138CCB527E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67EDFF38-449D-4D16-9407-F6138CCB527E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67EDFF38-449D-4D16-9407-F6138CCB527E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67EDFF38-449D-4D16-9407-F6138CCB527E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57FCDEA2-8D88-46E4-B18C-C70F2A85DFE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57FCDEA2-8D88-46E4-B18C-C70F2A85DFE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57FCDEA2-8D88-46E4-B18C-C70F2A85DFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57FCDEA2-8D88-46E4-B18C-C70F2A85DFE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dfilion.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = VideoDownloader\\VideoDownloader.csproj
+		SccProjectName1 = VideoDownloader
+		SccLocalPath1 = VideoDownloader
+		SccProjectUniqueName2 = VideoDownloaderFSharp\\VideoDownloaderFSharp.fsproj
+		SccProjectName2 = VideoDownloaderFSharp
+		SccLocalPath2 = VideoDownloaderFSharp
+		SccProjectUniqueName3 = RentalsDownloader\\RentalsDownloader.csproj
+		SccProjectName3 = RentalsDownloader
+		SccLocalPath3 = RentalsDownloader
+		SccProjectUniqueName4 = RentalsDownloader.Service\\RentalsDownloader.Service.fsproj
+		SccProjectName4 = RentalsDownloader.Service
+		SccLocalPath4 = RentalsDownloader.Service
+		SccProjectUniqueName5 = ..\\Common\\Common\\Common.csproj
+		SccProjectName5 = ../Common/Common
+		SccLocalPath5 = ..\\Common\\Common
+		SccProjectUniqueName6 = ..\\Common\\WebRobotFramework\\WebRobotFramework.csproj
+		SccProjectName6 = ../Common/WebRobotFramework
+		SccLocalPath6 = ..\\Common\\WebRobotFramework
+		SccProjectUniqueName7 = ..\\Common\\Common.Windows\\Common.Windows.csproj
+		SccProjectName7 = ../Common/Common.Windows
+		SccLocalPath7 = ..\\Common\\Common.Windows
+	EndGlobalSection
+EndGlobal
