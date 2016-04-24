@@ -106,15 +106,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.Windows\Common.Windows.csproj">
+    <ProjectReference Include="..\Common\Common.Windows\Common.Windows.csproj">
       <Project>{57fcdea2-8d88-46e4-b18c-c70f2a85dfe9}</Project>
       <Name>Common.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Common\Common.csproj">
+    <ProjectReference Include="..\Common\Common\Common.csproj">
       <Project>{f681fada-2210-499f-935e-463ee6a0d624}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\WebRobotFramework\WebRobotFramework.csproj">
+    <ProjectReference Include="..\Common\WebRobotFramework\WebRobotFramework.csproj">
       <Project>{67edff38-449d-4d16-9407-f6138ccb527e}</Project>
       <Name>WebRobotFramework</Name>
     </ProjectReference>

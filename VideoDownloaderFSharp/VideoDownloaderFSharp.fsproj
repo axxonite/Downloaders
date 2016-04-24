@@ -78,7 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\WebRobotFramework\WebRobotFramework.csproj">
+    <ProjectReference Include="..\Common\WebRobotFramework\WebRobotFramework.csproj">
       <Name>WebRobotFramework</Name>
       <Project>{67edff38-449d-4d16-9407-f6138ccb527e}</Project>
       <Private>True</Private>

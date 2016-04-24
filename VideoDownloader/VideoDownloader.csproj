@@ -100,7 +100,7 @@
     <Content Include="Video.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\WebRobotFramework\WebRobotFramework.csproj">
+    <ProjectReference Include="..\Common\WebRobotFramework\WebRobotFramework.csproj">
       <Project>{67edff38-449d-4d16-9407-f6138ccb527e}</Project>
       <Name>WebRobotFramework</Name>
     </ProjectReference>
