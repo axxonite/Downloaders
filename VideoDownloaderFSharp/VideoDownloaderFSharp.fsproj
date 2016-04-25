@@ -72,11 +72,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
-    <ProjectReference Include="..\Common\WebRobotFramework\WebRobotFramework.csproj">
-      <Name>WebRobotFramework</Name>
-      <Project>{67edff38-449d-4d16-9407-f6138ccb527e}</Project>
-      <Private>True</Private>
-    </ProjectReference>
     <Reference Include="WebDriver">
       <HintPath>..\packages\Selenium.WebDriver.2.48.2\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>

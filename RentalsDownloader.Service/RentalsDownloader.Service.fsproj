@@ -74,16 +74,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-    <ProjectReference Include="..\Common\Common\Common.csproj">
-      <Name>Common</Name>
-      <Project>{f681fada-2210-499f-935e-463ee6a0d624}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\WebRobotFramework\WebRobotFramework.csproj">
-      <Name>WebRobotFramework</Name>
-      <Project>{67edff38-449d-4d16-9407-f6138ccb527e}</Project>
-      <Private>True</Private>
-    </ProjectReference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
