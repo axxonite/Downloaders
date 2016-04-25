@@ -1,4 +1,4 @@
-﻿module RentalsDownloader
+﻿module Downloader
 
 open Rental
 open SearchQuery

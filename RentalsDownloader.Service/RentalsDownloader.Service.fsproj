@@ -58,9 +58,9 @@
     <Compile Include="Utilities.fs" />
     <Compile Include="Rental.fs" />
     <Compile Include="Interop.fs" />
-    <Content Include="packages.config" />
     <Compile Include="SearchQuery.fs" />
-    <Compile Include="RentalsDownloader.fs" />
+    <Compile Include="Downloader.fs" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">

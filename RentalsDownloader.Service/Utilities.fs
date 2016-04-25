@@ -1,5 +1,7 @@
 ﻿module Utilities
 
+open System.Collections.Generic
+
 type EnumStringPair<'a> = 
     { enum : 'a
       string : string }
