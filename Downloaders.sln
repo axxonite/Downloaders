@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalsDownloader", "Rental
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RentalsDownloader.Service", "RentalsDownloader.Service\RentalsDownloader.Service.fsproj", "{169E0AD4-55FB-4F5B-8BF8-86F7B6AD6511}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common\Common.csproj", "{F681FADA-2210-499F-935E-463EE6A0D624}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRobotFramework", "Common\WebRobotFramework\WebRobotFramework.csproj", "{67EDFF38-449D-4D16-9407-F6138CCB527E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{169E0AD4-55FB-4F5B-8BF8-86F7B6AD6511}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{169E0AD4-55FB-4F5B-8BF8-86F7B6AD6511}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{169E0AD4-55FB-4F5B-8BF8-86F7B6AD6511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F681FADA-2210-499F-935E-463EE6A0D624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F681FADA-2210-499F-935E-463EE6A0D624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F681FADA-2210-499F-935E-463EE6A0D624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F681FADA-2210-499F-935E-463EE6A0D624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67EDFF38-449D-4D16-9407-F6138CCB527E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67EDFF38-449D-4D16-9407-F6138CCB527E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67EDFF38-449D-4D16-9407-F6138CCB527E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67EDFF38-449D-4D16-9407-F6138CCB527E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
