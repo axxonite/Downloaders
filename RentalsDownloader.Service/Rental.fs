@@ -1,14 +1,20 @@
-﻿module RentalsDownloader.Service
+﻿module Rental
 
 open Common
 open System
 open System.IO
 open System.Text
 open System.Text.RegularExpressions
+open System.Xml.Serialization
 open WebRobotFramework
 
+type Download = 
+    { id : string
+      url : string }
+
 type Rental = 
-    { address : string
+    { download : Download
+      address : string
       amenities : list<string>
       available : string
       bathrooms : string
@@ -21,7 +27,6 @@ type Rental =
       email : string
       furnished : string
       hasParking : bool
-      id : string
       leaseType : string
       listingInfo : string
       listingType : string
@@ -40,14 +45,15 @@ type Rental =
       structureType : string
       title : string
       unitDetails : string
-      url : string
       visited : string
       walkScore : string }
 
 let numberRegex = new Regex("(\\d[\\d\\.,]*)")
 let neighboorhoodRegex = new Regex(@"(?:Los Angeles */ *)?([\w\s]+)")
+let getUrlForId (id : string) = String.Format("http://www.westsiderentals.com/listingdetail/{0}/", id)
+let acceptsCats rental = rental.pets <> "No pets" && rental.pets <> "Dog ok"
 
-let parse selenium = 
+let parse selenium id = 
     let getNodeText (selenium : SeleniumInterface) xpath = 
         let node = selenium.SelectNode(xpath)
         match node with
@@ -79,7 +85,6 @@ let parse selenium =
         | Some a -> a.Trim()
         | None -> ""
     
-    let id = "" // todo fill
     let location = getRentalItem "City/Area"
     let amenities = selectNodes "//div[contains(@class,'address-info')]//li" (fun l -> l.InnerText)
     let bedrooms = getRentalItem "Bedrooms"
@@ -88,13 +93,15 @@ let parse selenium =
     let rentDouble = getDoubleValue rent
     let squareFootage = getRentalItem "Square Footage"
     let squareFootageInt = int (getDoubleValue squareFootage)
-    let url = String.Format("http://www.westsiderentals.com/listingdetail/{0}/", id)
+    let url = getUrlForId id
     
     let rentPerSqFt = 
         match (squareFootageInt, rentDouble) with
         | (sqFt, rent) when sqFt > 0 && rent > 0.0 -> Some(rent / double sqFt)
         | _ -> None
-    { id = id
+    { download = 
+          { id = id
+            url = url }
       title = getNode "//div[contains(@class,'address-info')]//h1"
       location = location
       neighborhood = neighboorhoodRegex.Match(location).Groups.[1].Captures.[0].Value
@@ -122,13 +129,24 @@ let parse selenium =
       leaseType = getRentalItem "Lease Type"
       unitDetails = getRentalItem "Unit Details"
       listingType = getRentalItem "Listing Type"
-      url = url
       deposit = "" // todo fill
       called = ""
       comments = ""
       rating = ""
       ratingInt = 0
       visited = "" }
+
+let xmlSerializer = new XmlSerializer(typeof<Rental>)
+
+let saveFileToCache fileCachePath rental = 
+    use writer = new StreamWriter(String.Format("{0}\\{1}.xml", fileCachePath, rental.download.id))
+    xmlSerializer.Serialize(writer, rental)
+
+let download (selenium : SeleniumInterface) fileCachePath url = 
+    selenium.GoTo(url) |> ignore
+    let rental = parse selenium url
+    saveFileToCache fileCachePath rental
+    rental
 
 let saveToSpreadsheet (worksheet : WorkSheet) row rental = 
     let strContainsAny (s : string) a = a |> List.exists (fun a' -> s.Contains(a', StringComparison.OrdinalIgnoreCase))
@@ -144,7 +162,7 @@ let saveToSpreadsheet (worksheet : WorkSheet) row rental =
     setCell "V" rental.visited
     setCell "C" rental.called
     if rental.rating <> "" then setCell "R" rental.ratingInt
-    setCellFormula "Link" (String.Format("HYPERLINK(\"{0}\",\"Link\")", rental.url))
+    setCellFormula "Link" (String.Format("HYPERLINK(\"{0}\",\"Link\")", rental.download.url))
     setCellFormula "Map" (String.Format("=HYPERLINK(\"http://maps.google.com/?q={0}\",\"Map\")", rental.address))
     setCellFormula "Redfin" (String.Format("=HYPERLINK(\"https://www.google.com/search?q={0} Redfin\",\"Redfin\")", rental.address))
     setCell "Contact" rental.contact
@@ -167,7 +185,7 @@ let photoTemplate = Regex.Match(reportTemplate, "<photo>(.*)</photo>", RegexOpti
 let toHtml index rental = 
     let strReplace (a : string) b (s : string) = s.Replace(a, b)
     rentalTemplate
-    |> strReplace "[Url]" rental.url
+    |> strReplace "[Url]" rental.download.url
     |> strReplace "[Title]" (String.Format("{0}. {1}", index, rental.title))
     |> strReplace "[Location]" rental.location
     |> strReplace "[Price]" rental.rent

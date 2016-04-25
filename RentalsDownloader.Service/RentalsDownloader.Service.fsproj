@@ -55,9 +55,12 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="RentalsDownloader.Service.fs" />
+    <Compile Include="Utilities.fs" />
+    <Compile Include="Rental.fs" />
     <Compile Include="Interop.fs" />
     <Content Include="packages.config" />
+    <Compile Include="SearchQuery.fs" />
+    <Compile Include="RentalsDownloader.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
