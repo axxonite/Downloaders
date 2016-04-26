@@ -1,4 +1,5 @@
-﻿module Rental
+﻿[<AutoOpen>]
+module Rental
 
 open Common
 open System

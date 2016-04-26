@@ -60,6 +60,7 @@
     <Compile Include="Rental.fs" />
     <Compile Include="Interop.fs" />
     <Compile Include="SearchQuery.fs" />
+    <Compile Include="ReportPage.fs" />
     <Compile Include="Downloader.fs" />
     <Content Include="packages.config" />
   </ItemGroup>
@@ -69,6 +70,10 @@
       <Project>{67edff38-449d-4d16-9407-f6138ccb527e}</Project>
       <Private>True</Private>
     </ProjectReference>
+    <Reference Include="EPPlus">
+      <HintPath>..\packages\EPPlus.4.0.5\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
