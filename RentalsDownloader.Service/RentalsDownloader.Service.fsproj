@@ -57,8 +57,8 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Utilities.fs" />
+    <Compile Include="DomainTypes.fs" />
     <Compile Include="Rental.fs" />
-    <Compile Include="Interop.fs" />
     <Compile Include="SearchQuery.fs" />
     <Compile Include="ReportPage.fs" />
     <Compile Include="Downloader.fs" />

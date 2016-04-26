@@ -5,11 +5,11 @@ open System
 open System.IO
 open WebRobotFramework
 
-type ReportPage = 
-    { title : string
-      rentals : list<Rental> }
-
 let downloadPath = @"C:\Rentals\"
+
+let create title = 
+    { title = title
+      rentals = list.Empty }
 
 let save page = 
     if page.rentals |> List.isEmpty then ()
@@ -47,12 +47,11 @@ let save page =
             let workSheet = new WorkSheet(spreadSheet.Workbook.Worksheets.["Rentals"])
             let rentalsWithRowIndices = rentals |> assignIndicesFunc (fun i -> i + 2)
             for (i, r) in rentalsWithRowIndices do
-                saveToSpreadsheet workSheet i r
+                Rental.saveToSpreadsheet workSheet i r
             spreadSheet.SaveAs(fileInfo)
         
         loadSpreadSheet page.rentals
-        let rentals = page.rentals |> List.sortBy (fun r -> (-r.ratingInt, boolToInvInt (acceptsCats r), r.rentPerSqFt, -r.squareFootageInt, -r.bedroomsInt, boolToInvInt r.hasParking, r.rentDouble))
-        let rentalHtml = fst (rentals |> List.fold (fun (result, i) rental -> (result + toHtml i rental, i + 1)) ("", 0))
-        File.WriteAllText(String.Format("{0}{1}.html", downloadPath, page.title), reportTemplate.Replace("[Rentals]", rentalHtml))
+        let rentals = page.rentals |> List.sortBy (fun r -> (-r.ratingInt, boolToInvInt (r.acceptsCats), r.rentPerSqFt, -r.squareFootageInt, -r.bedroomsInt, boolToInvInt r.hasParking, r.rentDouble))
+        let rentalHtml = fst (rentals |> List.fold (fun (result, i) rental -> (result + Rental.toHtml i rental, i + 1)) ("", 0))
+        File.WriteAllText(String.Format("{0}{1}.html", downloadPath, page.title), Rental.reportTemplate.Replace("[Rentals]", rentalHtml))
         saveSpreadSheet rentals
-    ()

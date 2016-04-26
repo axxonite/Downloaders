@@ -26,3 +26,8 @@ let action seq lambda startIndex =
 
 let assignIndicesFunc f list = fst (list |> List.fold (fun (result, i) x -> ((f i, x) :: result, i + 1)) (List.empty, 0))
 let assignIndices list = assignIndicesFunc (fun i -> i) list
+
+let getOrCreate key creator map = 
+    match map |> Map.tryFind key with
+    | Some value -> value
+    | None -> creator()

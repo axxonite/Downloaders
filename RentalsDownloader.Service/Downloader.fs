@@ -1,60 +1,54 @@
 ﻿module Downloader
 
-open Rental
-open SearchQuery
-open System.Collections.Generic
 open System.IO
-open System.Xml.Serialization
 open Utilities
-
-type Downloader = 
-    { cache : IDictionary<string, Rental>
-      cachePath : string
-      xmlSerializer : XmlSerializer }
 
 let create cachePath = 
     let cacheFiles = Directory.EnumerateFiles(cachePath, "*.xml")
-    let serializer = new XmlSerializer(typeof<Rental>)
     { cachePath = cachePath
-      xmlSerializer = serializer
+      reportPages = Map.empty
       cache = 
           cacheFiles
-          |> Seq.map (fun f -> serializer.Deserialize(new FileStream(f, FileMode.Open)))
-          |> Seq.cast<Rental>
+          |> Seq.map (fun f -> Rental.xmlSerializer.Deserialize(new FileStream(f, FileMode.Open)) :?> Rental)
           |> Seq.map (fun r -> (r.download.id, r))
-          |> DictOfSeq }
+          |> Map.ofSeq }
 
-let download downloader selenium query = 
-    match isValid query with
-    | false -> ()
-    | true -> 
-        // logger
-        let retrieveItem downloader selenium id = 
-            match downloader.cache.ContainsKey(id) with
-            | true -> // Logger
-                downloader.cache.[id]
-            | false -> 
-                // Logger
-                let url = getUrlForId id
-                let rental = download selenium downloader.cachePath url
-                downloader.cache.Add(id, rental)
-                rental
+let favoriteNeighborhoods = [ "Echo Park"; "Los Feliz"; "Silver Lake"; "Hancock Park"; "Hollywood"; "West Hollywood" ]
+
+let download (downloader : Downloader) selenium query = 
+    let addToReportPage title rental reportPages = 
+        let page = reportPages |> getOrCreate title (fun () -> ReportPage.create title)
+        let page' = { page with rentals = rental :: page.rentals }
+        reportPages.Add(title, page')
+    
+    let keepItem rental = (rental.squareFootageInt = 0 || rental.squareFootageInt >= 1100) && not rental.photos.IsEmpty && rental.acceptsCats
+    
+    let retrieveRental rentalId downloader = 
+        let cache, rental = 
+            if downloader.cache.ContainsKey(rentalId) then (downloader.cache, downloader.cache.[rentalId])
+            else 
+                let url = Rental.getUrlForId rentalId
+                let rental = Rental.download selenium downloader.cachePath url
+                (downloader.cache.Add(rentalId, rental), rental)
         
-        let keepItem rental = (rental.squareFootageInt = 0 || rental.squareFootageInt >= 1100) && not rental.photos.IsEmpty && acceptsCats rental
-        // todo add reports
-        let itemDownloaded query rental = ()
+        let reportPages = 
+            if keepItem rental then 
+                downloader.reportPages
+                |> addToReportPage (query.region.ToString()) rental
+                |> addToReportPage (query.region.ToString() + " - " + rental.neighborhood) rental
+                |> if favoriteNeighborhoods |> List.contains rental.neighborhood then addToReportPage "_Favorite Neighborhoods" rental
+                   else id
+            else downloader.reportPages
         
-        let retrieve downloader selenium id = 
-            let rental = retrieveItem downloader selenium id
-            match keepItem rental with
-            | true -> itemDownloaded query rental
-            | false -> ()
-            ()
-        
-        let rec downloadItemsPage selenium query pageIndex = 
-            let ids = retrieveItemIds selenium query pageIndex
-            ids |> Seq.iter (fun id -> retrieve downloader selenium id)
-            if ids |> Seq.isEmpty then ()
-            else downloadItemsPage selenium query (pageIndex + 1)
-        
-        downloadItemsPage selenium query 0
+        { downloader with cache = cache
+                          reportPages = reportPages }
+    
+    let rec downloadItemsPage pageIndex downloader = 
+        let ids = SearchQuery.retrieveItemIds selenium query pageIndex
+        if ids |> Seq.isEmpty then downloader
+        else 
+            let downloader' = ids |> Seq.fold (fun d id -> retrieveRental id d) downloader
+            downloadItemsPage (pageIndex + 1) downloader'
+    
+    if not (SearchQuery.isValid query) then downloader
+    else downloadItemsPage 0 downloader
