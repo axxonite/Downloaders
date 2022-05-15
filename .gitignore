@@ -2,3 +2,7 @@ RentalsDownloader.Service/obj/Debug/RentalsDownloader.Service.fsproj.FileListAbs
 RentalsDownloader/obj/
 VideoDownloader/obj/
 VideoDownloaderFSharp/obj/
+Bin/
+.vs/
+*.vspscc
+*.vssscc
